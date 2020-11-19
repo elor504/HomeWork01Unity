@@ -707,6 +707,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   XPush: 3.7
   YPush: 5.4
+  rotationSpeed: 3
   Colors:
   - {r: 1, g: 0, b: 0.61538124, a: 1}
   - {r: 1, g: 0, b: 0, a: 1}

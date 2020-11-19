@@ -8,6 +8,7 @@ public class DVDBehaviour : MonoBehaviour
 
     public float XPush;
     public float YPush;
+    [Range(0,10)]
     public float rotationSpeed = 5f;
 
     [SerializeField]
@@ -30,7 +31,7 @@ public class DVDBehaviour : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        transform.rotation *= Quaternion.Euler(0f, 0f, rotationSpeed * (isClockwise?1f:-1f));
+        transform.rotation *= Quaternion.Euler(0f, 0f, rotationSpeed * 100f * Time.deltaTime * (isClockwise?1f:-1f));
         
     }
 
