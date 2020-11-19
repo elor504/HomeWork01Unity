@@ -8,15 +8,20 @@ public class DVDBehaviour : MonoBehaviour
 
     public float XPush;
     public float YPush;
+    public float rotationSpeed = 5f;
 
     [SerializeField]
     private Color[] Colors;
 
+
+
     int LastColor = 0;
+    bool isClockwise;
 
     // Start is called before the first frame update
     void Start()
     {
+
 		RB = GetComponent<Rigidbody2D>();
 
         RB.velocity = new Vector2(XPush, YPush);
@@ -25,6 +30,7 @@ public class DVDBehaviour : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        transform.rotation *= Quaternion.Euler(0f, 0f, rotationSpeed * (isClockwise?1f:-1f));
         
     }
 
@@ -33,7 +39,7 @@ public class DVDBehaviour : MonoBehaviour
 		if (collision.gameObject.tag == "ScreenEdge")
 		{
 			Debug.Log("Touchy");
-
+            isClockwise = !isClockwise;
 			ChangeColor();
 		}
 	}
