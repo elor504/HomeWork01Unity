@@ -16,7 +16,7 @@ public class DVDBehaviour : MonoBehaviour
 
 
 
-    int LastColor = 0;
+    int CurrentColor = 0;
     bool isClockwise;
 
     // Start is called before the first frame update
@@ -42,6 +42,7 @@ public class DVDBehaviour : MonoBehaviour
 			Debug.Log("Touchy");
             isClockwise = !isClockwise;
 			ChangeColor();
+            Camera.main.backgroundColor = InvertColor(Colors[CurrentColor]);
 		}
 	}
 
@@ -49,14 +50,23 @@ public class DVDBehaviour : MonoBehaviour
     {
 		Again:
         int RandomColor = Random.Range(0, Colors.Length);
-        if (LastColor != RandomColor)
+        if (CurrentColor != RandomColor)
         {
-            LastColor = RandomColor;
+            CurrentColor = RandomColor;
             this.gameObject.GetComponent<SpriteRenderer>().color = Colors[RandomColor];
         }
         else
         {
 			goto Again;
         }
+    }
+
+    Color InvertColor(Color color) {
+        Color invertedColor = color;
+        invertedColor.r = 1f - color.r;
+        invertedColor.g = 1f - color.g;
+        invertedColor.b = 1f - color.b;
+
+        return invertedColor;
     }
 }
