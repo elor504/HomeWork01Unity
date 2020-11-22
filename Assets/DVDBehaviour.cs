@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class DVDBehaviour : MonoBehaviour
 {
@@ -10,10 +11,12 @@ public class DVDBehaviour : MonoBehaviour
     public float YPush;
     [Range(0,10)]
     public float rotationSpeed = 5f;
+    [SerializeField]
+    Text text;
 
     [SerializeField]
     private Color[] Colors;
-
+    
 
 
     int CurrentColor = 0;
@@ -42,7 +45,9 @@ public class DVDBehaviour : MonoBehaviour
 			Debug.Log("Touchy");
             isClockwise = !isClockwise;
 			ChangeColor();
-            Camera.main.backgroundColor = InvertColor(Colors[CurrentColor]);
+            Color inveretdColor = InvertColor(Colors[CurrentColor]);
+            Camera.main.backgroundColor = inveretdColor;
+            text.color = inveretdColor;
 		}
 	}
 
